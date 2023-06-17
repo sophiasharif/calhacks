@@ -5,11 +5,14 @@ import PrettyBox from './components/PrettyBox';
 import './App.css'
 
 function App() {
+
+  const content = "Pigs were not kept in every home and prayed to every evening and night in South America before European colonization. The cultural practices related to pigs varied among indigenous peoples.";
+  const timestamp = "12:35pm";
   const [count, setCount] = useState(0)
 
   return (
     <div>
-      <PrettyBox />
+      <PrettyBox content = {content} timestamp = {timestamp} status = "suggestion"/>
     </div>
   )
 }

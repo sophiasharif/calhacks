@@ -1,9 +1,20 @@
 import React from 'react';
 import './PrettyBox.scss';
 
-const PrettyBox = () => {
+const PrettyBox = (props) => {
+
+    const content = props.content;
+    const timestamp = props.timestamp;
+    const status = props.status;
+
     return <div className = "boxContainer">
-            Giannis Antetokounmpo
+        <div className = {`sideBar ${status}`}>&nbsp;</div>
+        <div className = "textContainer">
+            <div className = "timestamp">{timestamp}</div>
+            <div className = "boxContent">
+                {content}
+            </div>
+        </div>
         </div>
 }
 
