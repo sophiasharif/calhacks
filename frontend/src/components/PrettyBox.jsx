@@ -1,7 +1,10 @@
 import React from 'react';
+import './PrettyBox.scss';
 
 const PrettyBox = () => {
-    return <div>This is a pretty box</div>
+    return <div className = "boxContainer">
+            Giannis Antetokounmpo
+        </div>
 }
 
 export default PrettyBox;
