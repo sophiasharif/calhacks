@@ -18,6 +18,7 @@ function App() {
       const response = await factCheck("pigs are 1 inch tall");
       console.log(response);
     }
+    setLoading(false);
 
     fetchData();
   }, []);
