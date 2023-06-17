@@ -5,6 +5,7 @@ import PrettyBox from "./components/PrettyBox";
 import factCheck from "./helpers/factCheck";
 import "./App.scss";
 import face from "./assets/face.svg";
+import summarize from "./helpers/summarize";
 
 function App() {
   const content =
@@ -15,7 +16,10 @@ function App() {
 
   useEffect(function () {
     async function fetchData() {
-      const response = await factCheck("pigs are 1 inch tall");
+      const response = await summarize(
+        "Mythological stories can be traced across continents and back to the beginning of time. People from different cultures have created myths to celebrate the diverse, the heroic, the unbelievable, and the unknown. At first glance, students may wonder what ties their lives may have to Greek mythology, if any. However, upon further examination, they will realize that myths have provided us with explanations, have influenced our vocabulary, have entertained people for many generations, and continue to teach us many lessons. Students will gain knowledge and understanding of the legacy of ancient Greece; selected myths, gods, and goddesses and their impact on literature today; and the relationship between Greek mythology and modern society."
+      );
+      // const response = await factCheck("pigs don't exist");
       console.log(response);
     }
     setLoading(false);

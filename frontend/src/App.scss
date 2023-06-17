@@ -1,8 +1,8 @@
-html{
-  background-color: #FFFEE9;
+html {
+  background-color: #fffee9;
 }
 
-.pageContainer{
+.pageContainer {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -10,20 +10,20 @@ html{
   height: 100vh;
   margin-bottom: 5.5rem;
 
-  @media only screen and (max-width: 1375px){
+  @media only screen and (max-width: 1375px) {
     justify-content: center;
   }
 
-  >.face{
+  > .face {
     width: 610px;
     margin-right: 8.25rem;
 
-  @media only screen and (max-width: 1375px){
-    margin-right: 0px;
-  }
+    @media only screen and (max-width: 1375px) {
+      margin-right: 0px;
+    }
   }
 
-  >.boxesContainer{
+  > .boxesContainer {
     display: flex;
     flex-direction: column;
     gap: 2rem;
