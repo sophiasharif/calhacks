@@ -48,12 +48,12 @@ export const SpeechPage = () => {
 					/>
 				))}
 
-				<PrettyBox
+				{/* <PrettyBox
 					corrections={["correction1", "correction2", "correction3"]}
 					transcriptText={"transcriptText"}
 					timestamp={new Date()}
 					status="correction"
-				/>
+				/> */}
 				{/* <PrettyBox
 					content={content}
 					timestamp={timestamp}

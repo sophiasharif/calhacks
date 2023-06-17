@@ -2,18 +2,18 @@ html {
 	background-color: #fffee9;
 }
 
-#root,
-body,
-.vsc-initialized {
-	background-color: #fffee9;
-}
+// #root,
+// body,
+// .vsc-initialized {
+// 	background-color: #fffee9;
+// }
 
 .pageContainer {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	width: 100vw;
-	min-height: 100vh;
+	min-height: 100%;
 	margin-bottom: 5.5rem;
 	background-color: #fffee9;
 
@@ -35,5 +35,10 @@ body,
 		flex-direction: column;
 		gap: 2rem;
 		margin-top: 4.375rem;
+		min-width: 39.5rem;
+
+		@media only screen and (max-width: 1375px){
+			margin-bottom: 5.5rem;
+		}
 	}
 }
