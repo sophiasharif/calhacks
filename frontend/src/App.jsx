@@ -2,7 +2,8 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import PrettyBox from './components/PrettyBox';
-import './App.css'
+import './App.scss';
+import face from './assets/face.svg';
 
 function App() {
 
@@ -11,8 +12,13 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div>
-      <PrettyBox content = {content} timestamp = {timestamp} status = "suggestion"/>
+    <div className = "pageContainer">
+      <img src = {face} className = "face"/>
+      <div className = "boxesContainer">
+        <PrettyBox content = {content} timestamp = {timestamp} status = "suggestion"/>
+        <PrettyBox content = {content} timestamp = {timestamp} status = "correction"/>
+        <PrettyBox content = {content + content } timestamp = {timestamp} status = "correction"/>
+      </div>
     </div>
   )
 }
