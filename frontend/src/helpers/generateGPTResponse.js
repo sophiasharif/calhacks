@@ -21,7 +21,6 @@ export default async function generateChatGPTResponse(
   temperature = 0.75
 ) {
   const api_key = import.meta.env.VITE_OPENAI_KEY;
-  console.log(api_key);
   const client = axios.create({
     headers: {
       Authorization: "Bearer " + api_key,

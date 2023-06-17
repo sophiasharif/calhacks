@@ -1,33 +1,30 @@
-import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import PrettyBox from './components/PrettyBox';
-import generateChatGPTResponse from './helpers/generateGPTResponse';
-import './App.css'
+import { useEffect, useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import PrettyBox from "./components/PrettyBox";
+import factCheck from "./helpers/factCheck";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
 
-  useEffect(function() {
+  useEffect(function () {
     async function fetchData() {
-      console.log("THIS IS ONE REQUEST")
-
-      const response = await generateChatGPTResponse("tell me a fun pig fact");
+      const response = await factCheck("pigs are 1 inch tall");
       console.log(response);
-      setLoading(false);
     }
 
     fetchData();
-  }, [])
+  }, []);
 
-  if (loading) return <div>Loading...</div>
+  if (loading) return <div>Loading...</div>;
 
   return (
     <div>
       <PrettyBox />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
