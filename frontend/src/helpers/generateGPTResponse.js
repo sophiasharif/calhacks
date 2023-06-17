@@ -15,9 +15,13 @@ Make sure to inlude "await" before the function call since the API query happens
     (meaning the rest of the code won't wait for the line to complete before it runs)
 */
 
-export default async function generateChatGPTResponse(prompt, tokens=500, temperature=.75) {
-   const api_key = import.meta.env.VITE_OPENAI_KEY
-   console.log(api_key)
+export default async function generateChatGPTResponse(
+  prompt,
+  tokens = 500,
+  temperature = 0.75
+) {
+  const api_key = import.meta.env.VITE_OPENAI_KEY;
+  console.log(api_key);
   const client = axios.create({
     headers: {
       Authorization: "Bearer " + api_key,
@@ -30,7 +34,7 @@ export default async function generateChatGPTResponse(prompt, tokens=500, temper
     max_tokens: tokens,
     temperature: temperature,
   };
-  
+
   try {
     const result = await client.post(
       "https://api.openai.com/v1/completions",
