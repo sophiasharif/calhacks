@@ -15,28 +15,32 @@ Make sure to inlude "await" before the function call since the API query happens
     (meaning the rest of the code won't wait for the line to complete before it runs)
 */
 
-export default async function generateChatGPTResponse(prompt, tokens=500, temperature=.75) {
-    console.log(process.env.VITE_OPENAI_KEY)
-//   const client = axios.create({
-//     headers: {
-//       Authorization: "Bearer " + process.env.VUE_APP_OPENAI_API_KEY,
-//     },
-//   });
+export default async function generateChatGPTResponse(
+  prompt,
+  tokens = 500,
+  temperature = 0.75
+) {
+  const api_key = import.meta.env.VITE_OPENAI_KEY;
+  const client = axios.create({
+    headers: {
+      Authorization: "Bearer " + api_key,
+    },
+  });
 
-//   const params = {
-//     prompt: prompt,
-//     model: "text-davinci-003",
-//     max_tokens: tokens,
-//     temperature: temperature,
-//   };
-  
-//   try {
-//     const result = await client.post(
-//       "https://api.openai.com/v1/completions",
-//       params
-//     );
-//     return result.data.choices[0].text;
-//   } catch (error) {
-//     console.error(error);
-//   }
+  const params = {
+    prompt: prompt,
+    model: "text-davinci-003",
+    max_tokens: tokens,
+    temperature: temperature,
+  };
+
+  try {
+    const result = await client.post(
+      "https://api.openai.com/v1/completions",
+      params
+    );
+    return result.data.choices[0].text;
+  } catch (error) {
+    console.error(error);
+  }
 }
