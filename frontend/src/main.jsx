@@ -10,22 +10,22 @@ import { ResultsPage } from "./pages/ResultsPage";
 import { AppContext } from "./contexts/AppContext";
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <SpeechPage></SpeechPage>,
-  },
-  {
-    path: "/speech",
-    element: <SpeechComponent></SpeechComponent>,
-  },
-  {
-    path: "/plan",
-    element: <PlanPage></PlanPage>,
-  },
-  {
-    path: "/results",
-    element: <ResultsPage></ResultsPage>,
-  },
+	{
+		path: "/live",
+		element: <SpeechPage></SpeechPage>,
+	},
+	{
+		path: "/speech",
+		element: <SpeechComponent></SpeechComponent>,
+	},
+	{
+		path: "/",
+		element: <PlanPage></PlanPage>,
+	},
+	{
+		path: "/results",
+		element: <ResultsPage></ResultsPage>,
+	},
 ]);
 
 // ReactDOM.createRoot(document.getElementById("root")).render(
@@ -35,17 +35,17 @@ const router = createBrowserRouter([
 // );
 
 const App = () => {
-  // Initialize your shared state here
-  const [transcript, setTranscript] = useState("");
-  const [corrections, setCorrections] = useState([]);
+	// Initialize your shared state here
+	const [transcript, setTranscript] = useState("");
+	const [corrections, setCorrections] = useState([]);
 
-  return (
-    <AppContext.Provider
-      value={{ transcript, setTranscript, corrections, setCorrections }}
-    >
-      <RouterProvider router={router} />
-    </AppContext.Provider>
-  );
+	return (
+		<AppContext.Provider
+			value={{ transcript, setTranscript, corrections, setCorrections }}
+		>
+			<RouterProvider router={router} />
+		</AppContext.Provider>
+	);
 };
 
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);

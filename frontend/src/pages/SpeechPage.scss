@@ -2,8 +2,14 @@ html {
   background-color: #fffee9;
 }
 
-body {
-  overflow-y: hidden;
+
+body{
+	overflow-y: hidden;
+
+	@media only screen and (max-width: 1179px){
+		overflow-y: auto;
+	}
+
 }
 
 .pageContainer {
