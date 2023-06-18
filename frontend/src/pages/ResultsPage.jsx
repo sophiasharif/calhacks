@@ -96,14 +96,16 @@ export const ResultsPage = () => {
       </div>
       <div id="corrections">
         {corrections.map((correction) => (
-          <PrettyBox
-            corrections={correction.corrections}
-            transcriptText={correction.transcriptText}
-            timestamp={correction.timestamp}
-            key={correction.timestamp}
-            status="correction"
-            style="width: 100%;"
-          />
+          <div className="priyanshu-fix">
+            <PrettyBox
+              corrections={correction.corrections}
+              transcriptText={correction.transcriptText}
+              timestamp={correction.timestamp}
+              key={correction.timestamp}
+              status="correction"
+              style="width: 100%;"
+            />
+          </div>
         ))}
       </div>
     </div>
