@@ -1,16 +1,28 @@
 import React from "react";
 import "./PrettyBox.scss";
 
-const PrettyBox = ({ note }) => {
+const PrettyBox = ({ note, index }) => {
 	console.log("note", note);
+
+	const e = index;
+	let him_cook;
+	if (index === 1){
+		him_cook = "second";
+	}
+	if (index === 2){
+		him_cook = "third";
+	}
+	console.log(e +  " is the index");
 
 	if (note.status === "question") {
 		return (
-			<div className="boxContainer">
-				<div className={`sideBar ${note.status}`}>&nbsp;</div>
+			<div className={`boxContainer ${him_cook}`}>
 				<div className="textContainer">
-					<div className="timestamp">{dateToHHMMSS(note.timestamp)}</div>
-					<div className="transcript">Someone asked: "{note.question}"</div>
+					<div className = "topRow">
+					<div className={`sideBar ${note.status}`}>&nbsp;</div>
+						{/* <div className="timestamp">{dateToHHMMSS(note.timestamp)}</div> */}
+						<div className="transcript"> <span style = {{fontWeight: 700}}>[{dateToHHMMSS(note.timestamp)}] </span>Someone asked: "{note.question}"</div>
+					</div>
 					<div className="boxContent">
 						<div className="correctionText">A: {note?.answer}</div>
 					</div>
@@ -21,10 +33,12 @@ const PrettyBox = ({ note }) => {
 
 	return (
 		<div className="boxContainer">
-			<div className={`sideBar ${note.status}`}>&nbsp;</div>
 			<div className="textContainer">
-				<div className="timestamp">{dateToHHMMSS(note.timestamp)}</div>
-				<div className="transcript">You said: "{note.transcriptText}"</div>
+				<div className = "topRow">
+					<div className={`sideBar ${note.status}`}>&nbsp;</div>
+					{/* <div className="timestamp">{dateToHHMMSS(note.timestamp)}</div> */}
+					<div className="transcript"><span style = {{fontWeight: 700}}>[{dateToHHMMSS(note.timestamp)}] You said:</span> "{note.transcriptText}"</div>
+				</div>
 				<div className="boxContent">
 					{note.corrections?.map((correction, index) => (
 						<div className="correction" key={index}>

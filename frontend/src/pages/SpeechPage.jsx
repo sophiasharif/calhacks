@@ -15,6 +15,26 @@ export const SpeechPage = () => {
 	const notes = useRef([]);
 	const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
 
+	const sampleNote = {
+		transcriptText:
+		  "tyler freya's web two my boy priya shou he's so good at web development",
+		timestamp: new Date(),
+		corrections: [
+		  "The paragraph is too vague and lacks context to be fact-checked."
+		],
+		status: "correction"
+	};
+
+	const sampleNote2 = {
+		transcriptText:
+		  "FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK",
+		timestamp: new Date(),
+		corrections: [
+		  "FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK"
+		],
+		status: "suggestion"
+	};
+
 	const addNote = (note) => {
 		notes.current.push(note);
 		forceUpdate();
@@ -41,22 +61,18 @@ export const SpeechPage = () => {
 				<SpeechComponent addNote={addNote} />
 			</div>
 			<div className="boxesContainer">
-				{notes.current.map((note, index) => (
-					<PrettyBox key={index} note={note} status="correction" />
-				))}
-
+				{notes.current.reverse().map((note, index) => {
+					if (index <= 2)
+					return (<PrettyBox index={index} note={note} status="correction" />);
+				}
+				)}
 				{/* <PrettyBox
-					notes={["correction1", "correction2", "correction3"]}
-					transcriptText={"transcriptText"}
-					timestamp={new Date()}
-					status="correction"
-				/> */}
-				{/* <PrettyBox
-					content={content}
-					timestamp={timestamp}
-					status="correction"
+					note = {sampleNote}
 				/>
 				<PrettyBox
+					note = {sampleNote2}
+				/> */}
+				{/* <PrettyBox
 					content={content + content}
 					timestamp={timestamp}
 					status="correction"

@@ -13,6 +13,8 @@ import SpeechRecognition, {
 import { debounce } from "debounce";
 import { factCheck, suggestAnswers } from "../helpers/GPTEndpoints";
 import { async } from "regenerator-runtime";
+import "./SpeechComponent.scss";
+import mic from "../assets/mic.svg";
 
 const appId = import.meta.env.VITE_SPEECHLY_APP_ID;
 const SpeechlySpeechRecognition = createSpeechlySpeechRecognition(appId);
@@ -145,27 +147,40 @@ const SpeechComponent = ({ addNote }) => {
 
 	return (
 		<div className="speech-component">
-			<p>Microphone: {listening ? "on" : "off"}</p>
-			<button
-				onClick={() => {
-					if (listening) {
-						SpeechRecognition.stopListening();
-					} else {
-						SpeechRecognition.startListening({ continuous: true });
-					}
-				}}
-			>
-				{listening ? "Stop" : "Start"}
-			</button>
-			{/* <button onClick={resetTextStream}>Reset</button> */}
-			{transcript.current.map((block, index) => {
-				if (block.text.length === 0) return;
-				return (
-					<p key={index}>
-						[{block.factual}]: {dateToHHMMSS(block.timestamp)}: {block.text}
-					</p>
-				);
-			})}
+			<div className = "transcriptTitle">Live Transcript</div>
+			<div className = "transcriptContainer">
+				{transcript.current.map((block, index) => {
+					if (block.text.length === 0) return;
+					return (
+						// <p key={index}>
+						// 	[{block.factual}]: {dateToHHMMSS(block.timestamp)}: {block.text}
+						// </p>
+						<p key = {index}>
+							{block.text}
+						</p>
+					);
+				})}
+			</div>
+			<div className = "buttonRow">
+				{/* <p>Microphone: {listening ? "on" : "off"}</p> */}
+				<button className = "recordButton"
+					onClick={() => {
+						if (listening) {
+							SpeechRecognition.stopListening();
+						} else {
+							SpeechRecognition.startListening({ continuous: true });
+						}
+					}}
+				>
+					<div className = "buttonContainer">
+						<img src = {mic}></img>
+						{listening && <div className = "recordIcon">&nbsp;</div>}
+					</div>
+					{/* {listening ? "Stop" : "Start"} */}
+				</button>
+				{!listening && <button className = "recordButton endSession">End Session</button>}
+				{/* <button onClick={resetTextStream}>Reset</button> */}
+			</div>
 		</div>
 	);
 };
