@@ -1,17 +1,32 @@
 import React from "react";
 import "./PrettyBox.scss";
 
-const PrettyBox = ({
-	correction: { corrections, transcriptText, timestamp, status },
-}) => {
+const PrettyBox = ({ note }) => {
+	console.log("note", note);
+
+	if (note.status === "question") {
+		return (
+			<div className="boxContainer">
+				<div className={`sideBar ${note.status}`}>&nbsp;</div>
+				<div className="textContainer">
+					<div className="timestamp">{dateToHHMMSS(note.timestamp)}</div>
+					<div className="transcript">Someone asked: "{note.question}"</div>
+					<div className="boxContent">
+						<div className="correctionText">A: {note?.answer}</div>
+					</div>
+				</div>
+			</div>
+		);
+	}
+
 	return (
 		<div className="boxContainer">
-			<div className={`sideBar ${status}`}>&nbsp;</div>
+			<div className={`sideBar ${note.status}`}>&nbsp;</div>
 			<div className="textContainer">
-				<div className="timestamp">{dateToHHMMSS(timestamp)}</div>
-				<div className="transcript">You said: "{transcriptText}"</div>
+				<div className="timestamp">{dateToHHMMSS(note.timestamp)}</div>
+				<div className="transcript">You said: "{note.transcriptText}"</div>
 				<div className="boxContent">
-					{corrections?.map((correction, index) => (
+					{note.corrections?.map((correction, index) => (
 						<div className="correction" key={index}>
 							<div className="correctionText">{correction}</div>
 						</div>

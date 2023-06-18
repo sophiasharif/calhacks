@@ -11,13 +11,14 @@ import SpeechRecognition, {
 	useSpeechRecognition,
 } from "react-speech-recognition";
 import { debounce } from "debounce";
-import { factCheck } from "../helpers/GPTEndpoints";
+import { factCheck, suggestAnswers } from "../helpers/GPTEndpoints";
+import { async } from "regenerator-runtime";
 
 const appId = import.meta.env.VITE_SPEECHLY_APP_ID;
 const SpeechlySpeechRecognition = createSpeechlySpeechRecognition(appId);
 SpeechRecognition.applyPolyfill(SpeechlySpeechRecognition);
 
-const SpeechComponent = ({ addCorrection }) => {
+const SpeechComponent = ({ addNote }) => {
 	const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
 
 	const {
@@ -59,6 +60,7 @@ const SpeechComponent = ({ addCorrection }) => {
 		if (blockObject.text.length > 5) {
 			transcript.current.push(blockObject);
 			fetchCorrection();
+			checkForQuestion();
 		} else {
 			// append the new block to the last block
 			let lastBlock = transcript.current[transcript.current.length - 1];
@@ -85,7 +87,7 @@ const SpeechComponent = ({ addCorrection }) => {
 			const response = await factCheck(blockObject.text);
 			console.log(response);
 			if (!response.factual && !response.unclear) {
-				addCorrection({
+				addNote({
 					transcriptText: lastFewBlocksText,
 					timestamp: blockObject.timestamp,
 					corrections: response.corrections,
@@ -103,6 +105,18 @@ const SpeechComponent = ({ addCorrection }) => {
 				for (let i = 0; i < lastFewBlocks.length; i++) {
 					lastFewBlocks[i].factual = "false";
 				}
+			}
+		}
+
+		async function checkForQuestion() {
+			const response = await suggestAnswers(blockObject.text);
+			if (response.containsQuestion) {
+				addNote({
+					status: "question",
+					question: response.question,
+					answer: response.answer,
+					timestamp: blockObject.timestamp,
+				});
 			}
 		}
 

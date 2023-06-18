@@ -12,15 +12,15 @@ export const SpeechPage = () => {
 	const [count, setCount] = useState(0);
 	const [loading, setLoading] = useState(true);
 
-	const corrections = useRef([]);
+	const notes = useRef([]);
 	const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
 
-	const addCorrection = (correction) => {
-		corrections.current.push(correction);
+	const addNote = (note) => {
+		notes.current.push(note);
 		forceUpdate();
 	};
 
-	console.log(JSON.stringify(corrections.current));
+	console.log(JSON.stringify(notes.current));
 
 	useEffect(function () {
 		async function fetchData() {
@@ -38,15 +38,15 @@ export const SpeechPage = () => {
 		<div className="pageContainer">
 			<div className="leftSide">
 				<img src={face} className="face" />
-				<SpeechComponent addCorrection={addCorrection} />
+				<SpeechComponent addNote={addNote} />
 			</div>
 			<div className="boxesContainer">
-				{corrections.current.map((correction, index) => (
-					<PrettyBox key={index} correction={correction} status="correction" />
+				{notes.current.map((note, index) => (
+					<PrettyBox key={index} note={note} status="correction" />
 				))}
 
 				{/* <PrettyBox
-					corrections={["correction1", "correction2", "correction3"]}
+					notes={["correction1", "correction2", "correction3"]}
 					transcriptText={"transcriptText"}
 					timestamp={new Date()}
 					status="correction"
