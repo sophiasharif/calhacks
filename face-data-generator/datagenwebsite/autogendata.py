@@ -50,8 +50,8 @@ for i in range(10000):
     addRandomness("lex2", "ley2", 5, 5)
     addRandomness("rex2", "rey2", 5, 5)
     addRandomness("mx2", "my2", 10, 10)
-    addRandomBetween("mx2", 0, 10)
-    addRandomBetween("my2", -10, 10)
+    addRandomBetween("my2", 10, 20)
+    addRandomBetween("mx2", -10, 10)
 
     addRandomness("lex1", "ley1", 2, 2)
     addRandomness("lex3", "ley3", 2, 2)
@@ -61,22 +61,22 @@ for i in range(10000):
     addRandomness("mx3", "my3", 2, 2)
 
     keys = ['lex1',
-            'lex2',
-            'lex3',
             'ley1',
+            'lex2',
             'ley2',
+            'lex3',
             'ley3',
             'rex1',
-            'rex2',
-            'rex3',
             'rey1',
+            'rex2',
             'rey2',
+            'rex3',
             'rey3',
             'mx1',
-            'mx2',
-            'mx3',
             'my1',
+            'mx2',
             'my2',
+            'mx3',
             'my3']
 
     # turn random_numbers_dict into a string
@@ -139,22 +139,22 @@ for i in range(10000):
     addRandomness("mx3", "my3", 2, 2)
 
     keys = ['lex1',
-            'lex2',
-            'lex3',
             'ley1',
+            'lex2',
             'ley2',
+            'lex3',
             'ley3',
             'rex1',
-            'rex2',
-            'rex3',
             'rey1',
+            'rex2',
             'rey2',
+            'rex3',
             'rey3',
             'mx1',
-            'mx2',
-            'mx3',
             'my1',
+            'mx2',
             'my2',
+            'mx3',
             'my3']
 
     # turn random_numbers_dict into a string

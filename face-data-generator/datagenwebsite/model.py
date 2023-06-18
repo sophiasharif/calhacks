@@ -39,15 +39,14 @@ class Model(nn.Module):
     def __init__(self):
         super(Model, self).__init__()
         # Adjust input and output dimensions accordingly
-        self.fc1 = nn.Linear(8, 128)
-        self.fc2 = nn.Linear(128, 128)
-        self.fc3 = nn.Linear(128, 128)
-        self.fc4 = nn.Linear(128, 18)
+        self.fc1 = nn.Linear(8, 32)
+        self.fc2 = nn.Linear(32, 32)
+        self.fc4 = nn.Linear(32, 18)
 
     def forward(self, x):
         x = self.fc1(x)
         x = self.fc2(x)
-        x = self.fc3(x)
+        # x = self.fc3(x)
         x = self.fc4(x)
         return x
 
@@ -82,6 +81,13 @@ for data_path_object in data_path_objects:
 
     # Initialize your dataset and model
     dataset = CustomDataset(data_path)
+
+    # Split the dataset into train and test set
+    train_size = int(0.8 * len(dataset))
+    test_size = len(dataset) - train_size
+    train_dataset, test_dataset = torch.utils.data.random_split(
+        dataset, [train_size, test_size])
+
     model = Model()
     # load the model from trained_model.pth
     # model.load_state_dict(torch.load('trained_model.pth'))
@@ -98,7 +104,7 @@ for data_path_object in data_path_objects:
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
     # Create data loader
-    dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
+    dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
 
     # Training loop
     for epoch in range(num_epochs):
@@ -114,6 +120,17 @@ for data_path_object in data_path_objects:
 
         # Print the loss for every epoch
         print(f"Epoch {epoch+1}/{num_epochs}, Loss: {loss.item()}")
+
+    # # Testing loop
+    # with torch.no_grad():
+    #     for inputs, targets in DataLoader(test_dataset, batch_size=1):
+    #         outputs = model(inputs)
+
+    #         # Compare the outputs with targets with math
+    #         def distance(x1, y1, x2, y2):
+    #             return ((x1-x2)**2 + (y1-y2)**2)**0.5
+
+    #         # print(f"Predicted: {outputs}, Target: {targets}")
 
     # Save the trained model
     torch.save(model.state_dict(), 'trained_model.pth')
