@@ -40,6 +40,10 @@ export const SpeechPage = () => {
 		forceUpdate();
 	};
 
+	const setNotes = () => {
+		corrections = notes;
+	}
+
 	console.log(JSON.stringify(notes.current));
 
 	useEffect(function () {

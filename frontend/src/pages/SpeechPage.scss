@@ -2,6 +2,10 @@ html {
 	background-color: #fffee9;
 }
 
+body{
+	overflow-y: hidden;
+}
+
 .pageContainer {
 	display: flex;
 	flex-direction: row;
@@ -34,7 +38,7 @@ html {
 	}
 
 	.face {
-		width: 600px;
+		width: 411px;
 		margin-right: 4.1875rem;
 
 		@media only screen and (max-width: 1179px) {
