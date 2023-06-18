@@ -1,3 +1,5 @@
+from usemodel import genModelOutput
+
 from flask import Flask, render_template, request
 import random
 from string import Template
@@ -106,8 +108,31 @@ def generate_random_svg():
     print(svg_string)
     svg_string += "<h1>" + str(id) + "</h1>"
 
-    # join all the random numbers into a string
-    all_random_numbers = ' '.join(map(str, random_numbers))
+    keys = ['lex1',
+            'lex2',
+            'lex3',
+            'ley1',
+            'ley2',
+            'ley3',
+            'rex1',
+            'rex2',
+            'rex3',
+            'rey1',
+            'rey2',
+            'rey3',
+            'mx1',
+            'mx2',
+            'mx3',
+            'my1',
+            'my2',
+            'my3']
+
+    all_random_numbers = []
+
+    for key in keys:
+        all_random_numbers.append(str(random_numbers_dict[key]))
+
+    all_random_numbers = ' '.join(all_random_numbers)
 
     return svg_string, all_random_numbers
 
@@ -116,6 +141,12 @@ def generate_random_svg():
 def random_image():
     svg_string, all_random_numbers = generate_random_svg()
     return render_template('random_image.html', svg_image=Markup(svg_string), random_numbers=all_random_numbers)
+
+
+@app.route('/gen_image')
+def gen_image():
+    svg_string, all_random_numbers = generate_random_svg()
+    return render_template('gen_image.html', svg_image=Markup(svg_string))
 
 
 @app.route('/save_data', methods=['POST'])
@@ -134,11 +165,73 @@ def save_data():
     print(data["numbers"])
     returnString += data["numbers"] + '\n'
 
-    file = open('../dataset.txt', 'a')
+    file = open('./data/dataset.txt', 'a')
     file.write(returnString)
     file.close()
 
     return render_template('redirectToRandomImage.html')
+
+
+def gen_svg_with_number(numbers):
+    template_file = open('../assets/face-template.svg', 'r')
+    template_string = template_file.read()
+    template_file.close()
+
+    random_numbers_dict = {
+        'lex1': numbers[0],
+        'lex2': numbers[1],
+        'lex3': numbers[2],
+        'ley1': numbers[3],
+        'ley2': numbers[4],
+        'ley3': numbers[5],
+        'rex1': numbers[6],
+        'rex2': numbers[7],
+        'rex3': numbers[8],
+        'rey1': numbers[9],
+        'rey2': numbers[10],
+        'rey3': numbers[11],
+        'mx1': numbers[12],
+        'mx2': numbers[13],
+        'mx3': numbers[14],
+        'my1': numbers[15],
+        'my2': numbers[16],
+        'my3': numbers[17],
+    }
+
+    svg_string = Template(template_string).substitute(random_numbers_dict)
+    return svg_string
+
+
+@app.route('/make_image_from_emotions', methods=['POST'])
+def make_image_from_emotions():
+    data = request.form
+    print("AWESOME POSSUM")
+    # print(data)
+
+    numberArray = []
+
+    for key in ['happy', 'sad', 'angry', 'surprise', 'love', 'fear', 'confusion', 'boredom']:
+        numberArray.append(int(data[key]))
+
+    print(numberArray)
+
+    # # change directory into ../pytorchmodel
+    # os.chdir('../pytorchmodel')
+    # # print the current path
+    # print("\n==========\n\nsys.path")
+    # print(sys.path)
+
+    outputArray = genModelOutput(numberArray)
+
+    print("=======================")
+    print("outputArray")
+    print(outputArray)
+
+    svg_string = gen_svg_with_number(outputArray)
+
+    return render_template('gen_image.html', svg_image=Markup(svg_string))
+
+    # return "OK"
 
 
 @app.route('/like/<path:image_url>')
