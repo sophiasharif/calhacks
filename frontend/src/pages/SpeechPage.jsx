@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import PrettyBox from "../components/PrettyBox";
 import factCheck from "../helpers/factCheck";
+import suggestion from "../helpers/suggestion";
 import "./SpeechPage.scss";
 import face from "../assets/face.svg";
 
@@ -13,7 +14,9 @@ export const SpeechPage = () => {
 
   useEffect(function () {
     async function fetchData() {
-      const response = await factCheck("pigs are 1 inch tall");
+      const response = await suggestion(
+        "pigs are 1 inch tall. i love minecraft. obama used to be the president. when was obama the president?"
+      );
       console.log(response);
     }
     setLoading(false);
@@ -45,6 +48,6 @@ export const SpeechPage = () => {
       </div>
     </div>
   );
-}
+};
 
 // export default SpeechPage;
