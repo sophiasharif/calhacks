@@ -1,0 +1,43 @@
+body {
+  font-family: "Lato";
+  font-style: normal;
+  color: #464646;
+  h1 {
+    font-weight: 700;
+    font-size: 70px;
+  }
+}
+
+.wrapper {
+  margin: 4rem;
+}
+
+.container {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.23) 0%,
+    rgba(6, 255, 244, 0.23) 100%
+  );
+  border: 2px solid #1cf3ff;
+  border-radius: 20px;
+  padding: 1.5rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+
+  .col {
+    padding: 1rem;
+  }
+}
+
+#transcript {
+  height: 500px;
+  overflow-y: scroll;
+}
+
+.priyanshu-fix {
+  margin: 1rem;
+}
