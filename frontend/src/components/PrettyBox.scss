@@ -13,7 +13,7 @@
 	// width: 39.5rem;
 	width: 100%;
 	font-family: "Lato";
-	font-size: 1.25rem;
+	font-size: 0.5rem;
 	// padding: 1rem 0 1rem 1.5rem;
 	gap: 2rem;
 	box-sizing: border-box;
@@ -33,7 +33,7 @@
 			margin-bottom: 1rem;
 
 			> .sideBar {
-				min-width: 1rem;
+				min-width: 0.7rem;
 				height: 100%;
 				margin-right: 10px;
 				// background-color: red;
@@ -60,7 +60,7 @@
 				font-style: italic;
 				color: #A8A8A8;
 				font-weight: 400;
-				font-size: 2rem;
+				font-size: 1.5rem;
 				line-height: 38px;
 	
 			}
@@ -74,7 +74,7 @@
 			.correctionText{
 				line-height: 150%;
 				color: #464646;
-				font-size: 2.5rem;
+				font-size: 2rem;
 				font-weight: 700;
 			}
 		}
