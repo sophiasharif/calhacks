@@ -16,6 +16,7 @@ Make sure to inlude "await" before the function call since the API query happens
 */
 
 export default async function generateChatGPTResponse(
+	speechContext,
 	responseInstructions,
 	content,
 	tokens = 500,
@@ -35,6 +36,7 @@ export default async function generateChatGPTResponse(
 			content:
 				"You are an AI language model that responds as consicely as possible and follows the propmts properly.",
 		},
+		{ role: "user", content: speechContext },
 		{ role: "user", content: responseInstructions + "\n\n" + content },
 		// { role: "user", content: content },
 	];
