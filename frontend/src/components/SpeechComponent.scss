@@ -1,3 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+
 .speech-component {
-	color: black;
+
+	font-family: 'Lato';
+	width: 100%;
+
+	 .transcriptTitle{
+		font-size: 1.25rem;
+		line-height: 1.5rem;
+		color: #393939;
+		font-weight: 700;
+		font-family: 'Lato';
+		margin-bottom: 1rem;
+	}
+
+	.buttonRow{
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		width: 50%;
+
+		.recordButton{
+			min-width: 6.625rem;
+			height: 3rem;
+			background: linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(6, 255, 244, 0.14) 100%);
+			border: 2px solid rgba(28, 243, 255, 0.7);
+			border-radius: 20px;
+
+			>.buttonContainer{
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 100%;
+				gap: 0.5rem;
+
+				>.recordIcon{
+					display: inline-block;
+					background: #FF5A5A;
+					width: 1rem;
+					height: 1rem;
+					border-radius: 50rem;
+					margin-right: 0.3rem;
+				}
+			}
+
+			&:hover{
+				cursor: pointer;
+			}
+		}
+
+		.endSession{
+			font-family: 'Lato';
+			font-size: 1.25rem;
+			color: #464646;
+			padding: 0 1rem 0 1rem;
+		}
+	}
+
+	.transcriptContainer{
+		max-height: 385px;
+		overflow-y: auto;
+		width: 80%;
+	}
+
 }

@@ -11,8 +11,10 @@ html {
 	margin-bottom: 5.5rem;
 	background-color: #fffee9;
 
-	@media only screen and (max-width: 1375px) {
+	@media only screen and (max-width: 1179px) {
+		flex-direction: column;
 		justify-content: center;
+		align-items: center;
 	}
 
 	> .leftSide {
@@ -20,14 +22,23 @@ html {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: center;
+		justify-content: flex-start;
+		// justify-content: center;
+		max-width: 600px;
+		padding-left: 2rem;
+
+		@media only screen and (max-width: 1179px){
+			align-items: center;
+			justify-content: center;
+		}
 	}
 
 	.face {
-		width: 610px;
-		// margin-right: 8.25rem;
+		width: 600px;
+		margin-right: 4.1875rem;
 
-		@media only screen and (max-width: 1375px) {
+		@media only screen and (max-width: 1179px) {
+			width: 500px;
 			margin-right: 0px;
 		}
 	}
@@ -37,6 +48,11 @@ html {
 		display: flex;
 		flex-direction: column;
 		gap: 2rem;
-		margin-top: 4.375rem;
+		margin-top: 8rem;
+		padding-right: 3rem;
+
+		@media only screen and (max-width: 1179px){
+			padding: 0 2rem 0 2rem;
+		}
 	}
 }
