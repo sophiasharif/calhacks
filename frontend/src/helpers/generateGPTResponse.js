@@ -39,6 +39,7 @@ export default async function generateChatGPTResponse(
       "https://api.openai.com/v1/completions",
       params
     );
+    console.log("generated: ", result.data.choices[0].text);
     return result.data.choices[0].text;
   } catch (error) {
     console.error(error);
