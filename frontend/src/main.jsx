@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 // import App from "./App.jsx";
 import "./index.css";
@@ -7,6 +7,7 @@ import SpeechComponent from "./components/SpeechComponent.jsx";
 import { SpeechPage } from "./pages/SpeechPage.jsx";
 import { PlanPage } from "./pages/PlanPage.jsx";
 import { ResultsPage } from "./pages/ResultsPage";
+import { AppContext } from "./contexts/AppContext";
 
 const router = createBrowserRouter([
   {
@@ -27,8 +28,24 @@ const router = createBrowserRouter([
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  // <React.StrictMode>
-  <RouterProvider router={router} />
-  // </React.StrictMode>,
-);
+// ReactDOM.createRoot(document.getElementById("root")).render(
+// <AppContext.Provider value={}>
+//   <RouterProvider router={router} />
+//   </AppContext.Provider>
+// );
+
+const App = () => {
+  // Initialize your shared state here
+  const [transcript, setTranscript] = useState("");
+  const [corrections, setCorrections] = useState([]);
+
+  return (
+    <AppContext.Provider
+      value={{ transcript, setTranscript, corrections, setCorrections }}
+    >
+      <RouterProvider router={router} />
+    </AppContext.Provider>
+  );
+};
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
