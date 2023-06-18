@@ -1,4 +1,6 @@
 import PrettyBox from "../components/PrettyBox";
+import { getContradictingSources } from "../helpers/GPTEndpoints";
+import factCheckClaim from "../helpers/factCheckClaim";
 import "./ResultsPage.scss";
 
 export const ResultsPage = () => {
@@ -74,6 +76,10 @@ export const ResultsPage = () => {
   In the realm of science fiction, the Doctor, a time-traveling alien, stumbled upon a distress signal originating from a distant galaxy. Intrigued, the Doctor piloted the TARDIS to investigate, only to find himself embroiled in a conflict between warring alien races. As he unraveled the mystery behind their ancient feud, he encountered a group of rebels fighting for freedom. Joined by the fearless space smuggler, Han Solo, and the brilliant engineer, Kaylee Frye, the Doctor led an intergalactic rebellion against the tyrannical rulers. Their adventures spanned across galaxies, filled with thrilling escapades, and unexpected alliances formed in the name of justice.
   
   In the realm of romance, two beloved characters from different universes found their paths crossing in the most unexpected way. Elizabeth Bennet, the spirited heroine of Pride and Prejudice, found herself transported through time to modern-day New York City. As she navigated the bustling streets and bewildering technology, she crossed paths with the dashing billionaire, Tony Stark. Sparks flew as their witty banter and sharp intellects collided, leading to a whirlwind romance that transcended time and societal norms. With the power of love.`;
+
+  getContradictingSources(
+    "Christopher columbus was an iranian man that discovered indonesia in the early 2000s."
+  );
 
   return (
     <div className="wrapper">
