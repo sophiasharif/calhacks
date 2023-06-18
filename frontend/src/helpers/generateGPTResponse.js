@@ -16,7 +16,8 @@ Make sure to inlude "await" before the function call since the API query happens
 */
 
 export default async function generateChatGPTResponse(
-	prompt,
+	responseInstructions,
+	content,
 	tokens = 500,
 	temperature = 0.1
 ) {
@@ -27,21 +28,41 @@ export default async function generateChatGPTResponse(
 		},
 	});
 
+	// TODO: fix this
+	const messages = [
+		{
+			role: "system",
+			content:
+				"You are an AI language model that responds as consicely as possible and follows the propmts properly.",
+		},
+		{ role: "user", content: responseInstructions + "\n\n" + content },
+		// { role: "user", content: content },
+	];
+	// const messageJson = JSON.stringify(messages);
+	// console.log("messages json: ", messageJson);
+
+	// const prompt = responseInstructions + "\n\n" + content + "\n";
+
 	const params = {
 		prompt: prompt,
-		model: "text-davinci-003",
+		messages: messages,
+		model: "gpt-3.5-turbo",
 		max_tokens: tokens,
 		temperature: temperature,
 	};
 
 	try {
+		console.log("params: ", params);
 		const result = await client.post(
-			"https://api.openai.com/v1/completions",
+			"https://api.openai.com/v1/chat/completions",
 			params
 		);
-		console.log("generated: ", result.data.choices[0].text);
-		return result.data.choices[0].text;
+
+		const response = result.data.choices[0].message.content;
+		console.log("response: ", response);
+
+		return response;
 	} catch (error) {
-		console.error(error);
+		console.error("ERROR!!", error);
 	}
 }

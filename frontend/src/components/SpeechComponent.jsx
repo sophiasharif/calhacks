@@ -68,16 +68,16 @@ const SpeechComponent = ({ addCorrection }) => {
 		async function fetchCorrection() {
 			// get the last three blocks that were factual
 
-			let lastThreeBlocks = [];
-			let lastThreeBlocksText = "";
+			let lastFewBlocks = [];
+			let lastFewBlocksText = "";
 
 			for (let i = transcript.current.length - 1; i >= 0; i--) {
 				let currentBlock = transcript.current[i];
 				if (currentBlock.factual === "false") break;
 				else {
-					lastThreeBlocksText = currentBlock.text + lastThreeBlocksText;
-					lastThreeBlocks.push(currentBlock);
-					if (lastThreeBlocksText.length > 200) break;
+					lastFewBlocksText = currentBlock.text + lastFewBlocksText;
+					lastFewBlocks.push(currentBlock);
+					if (lastFewBlocksText.length > 200) break;
 				}
 			}
 
@@ -86,7 +86,7 @@ const SpeechComponent = ({ addCorrection }) => {
 			console.log(response);
 			if (!response.factual) {
 				addCorrection({
-					transcriptText: lastThreeBlocksText,
+					transcriptText: lastFewBlocksText,
 					timestamp: blockObject.timestamp,
 					corrections: response.corrections,
 					status: "correction",
@@ -95,12 +95,12 @@ const SpeechComponent = ({ addCorrection }) => {
 
 			// update the factual status of the block
 			if (response.factual) {
-				for (let i = 0; i < lastThreeBlocks.length; i++) {
-					lastThreeBlocks[i].factual = "true";
+				for (let i = 0; i < lastFewBlocks.length; i++) {
+					lastFewBlocks[i].factual = "true";
 				}
 			} else {
-				for (let i = 0; i < lastThreeBlocks.length; i++) {
-					lastThreeBlocks[i].factual = "false";
+				for (let i = 0; i < lastFewBlocks.length; i++) {
+					lastFewBlocks[i].factual = "false";
 				}
 			}
 		}
