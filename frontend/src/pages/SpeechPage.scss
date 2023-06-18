@@ -1,6 +1,7 @@
 html {
-	background-color: #fffee9;
+  background-color: #fffee9;
 }
+
 
 body{
 	overflow-y: hidden;
@@ -8,59 +9,70 @@ body{
 	@media only screen and (max-width: 1179px){
 		overflow-y: auto;
 	}
+
 }
 
 .pageContainer {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	width: 100vw;
-	min-height: 100vh;
-	margin-bottom: 5.5rem;
-	background-color: #fffee9;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100vw;
+  min-height: 100vh;
+  margin-bottom: 5.5rem;
+  background-color: #fffee9;
 
-	@media only screen and (max-width: 1179px) {
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-	}
+  @media only screen and (max-width: 1179px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
-	> .leftSide {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		justify-content: flex-start;
-		// justify-content: center;
-		max-width: 550px;
-		padding-left: 2rem;
+  > .leftSide {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    // justify-content: center;
+    max-width: 550px;
+    padding-left: 2rem;
 
-		@media only screen and (max-width: 1179px){
-			align-items: center;
-			justify-content: center;
-		}
-	}
+    @media only screen and (max-width: 1179px) {
+      align-items: center;
+      justify-content: center;
+    }
+  }
 
-	.face {
-		width: 411px;
-		// margin-right: 4.1875rem;
+  .face {
+    width: 411px;
+    // margin-right: 4.1875rem;
 
-		@media only screen and (max-width: 1179px) {
-			width: 500px;
-			margin-right: 0px;
-		}
-	}
+    @media only screen and (max-width: 1179px) {
+      width: 500px;
+      margin-right: 0px;
+    }
+  }
 
-	> .boxesContainer {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		gap: 2rem;
-		margin-top: 8rem;
-		padding-right: 3rem;
+  > .boxesContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 8rem;
+    padding-right: 3rem;
 
-		@media only screen and (max-width: 1179px){
-			padding: 0 2rem 0 2rem;
-		}
-	}
+    @media only screen and (max-width: 1179px) {
+      padding: 0 2rem 0 2rem;
+    }
+  }
+}
+
+.sources {
+  font-size: 1rem;
+  font-style: italic;
+  margin-top: 0.5rem;
+
+  a {
+    padding: 0.5rem;
+  }
 }
