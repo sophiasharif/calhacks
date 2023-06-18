@@ -15,6 +15,7 @@ class CustomDataset(Dataset):
             for line in file:
                 line = line.strip().split()
                 input_data = list(map(float, line[:8]))
+                input_data = input_data[:2]
                 output_data = list(map(float, line[8:]))
                 # normalize data
                 input_data = [x/100 for x in input_data]
@@ -39,7 +40,7 @@ class Model(nn.Module):
     def __init__(self):
         super(Model, self).__init__()
         # Adjust input and output dimensions accordingly
-        self.fc1 = nn.Linear(8, 32)
+        self.fc1 = nn.Linear(2, 32)
         self.fc2 = nn.Linear(32, 32)
         self.fc4 = nn.Linear(32, 18)
 
@@ -52,17 +53,17 @@ class Model(nn.Module):
 
 
 data_path_objects = [
-    {
-        'path': './data/dataset.txt',
-        'num_epochs': 10,
-    },
-    {
-        'path': './data/dataset-jiggled.txt',
-        'num_epochs': 10,
-    },
+    # {
+    #     'path': './data/dataset.txt',
+    #     'num_epochs': 10,
+    # },
+    # {
+    #     'path': './data/dataset-jiggled.txt',
+    #     'num_epochs': 10,
+    # },
     {
         'path': './data/happy-face-data.txt',
-        'num_epochs': 3,
+        'num_epochs': 5,
     },
     {
         'path': './data/sad-face-data.txt',

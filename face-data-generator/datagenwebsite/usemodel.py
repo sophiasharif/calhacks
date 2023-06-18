@@ -11,7 +11,7 @@ class Model(nn.Module):
     def __init__(self):
         super(Model, self).__init__()
         # Adjust input and output dimensions accordingly
-        self.fc1 = nn.Linear(8, 32)
+        self.fc1 = nn.Linear(2, 32)
         self.fc2 = nn.Linear(32, 32)
         self.fc4 = nn.Linear(32, 18)
 
@@ -47,6 +47,7 @@ class Model(nn.Module):
 
 
 def genModelOutput(input_data):
+    input_data = input_data[:2]
     # normalize data
     input_data = [x/100 for x in input_data]
     # convert input_data to tensor
