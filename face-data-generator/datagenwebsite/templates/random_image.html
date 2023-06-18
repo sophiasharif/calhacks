@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Random Image</title>
+	</head>
+	<body>
+		<style>
+			/* make all svgs width 30rem */
+			svg {
+				width: 30rem;
+			}
+			label {
+				width: 5rem;
+				display: inline-block;
+			}
+			input[type="range"] {
+				width: 20rem;
+				display: inline-block;
+			}
+			/* center the whole page */
+			html,
+			body {
+				height: 100%;
+				margin: 0;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+			}
+
+			input[type="submit"] {
+				margin-top: 1rem;
+				width: 25rem;
+			}
+		</style>
+		<!-- <h1>Random Image</h1> -->
+		<!-- <img src="{{ image_url }}" alt="Random Image" />
+		<button onclick="likeImage('{{ image_url }}')">Like</button>
+		<button onclick="dislikeImage('{{ image_url }}')">Dislike</button> -->
+
+		{{ svg_image }}
+
+		<!-- 8 sliders with labels happy, sad, angry, surprise, love, fear, confusion, boredom -->
+		<form action="/save_data" method="post">
+			<input name="numbers" value="{{ random_numbers }}" />
+			<br />
+			<label for="happy">Happy</label>
+			<input type="range" id="happy" name="happy" min="0" max="100" value="0" />
+			<br />
+			<label for="sad">Sad</label>
+			<input type="range" id="sad" name="sad" min="0" max="100" value="0" />
+			<br />
+			<label for="angry">Angry</label>
+			<input type="range" id="angry" name="angry" min="0" max="100" value="0" />
+			<br />
+			<label for="surprise">Surprise</label>
+			<input
+				type="range"
+				id="surprise"
+				name="surprise"
+				min="0"
+				max="100"
+				value="0"
+			/>
+			<br />
+			<label for="love">Love</label>
+			<input type="range" id="love" name="love" min="0" max="100" value="0" />
+			<br />
+			<label for="fear">Fear</label>
+			<input type="range" id="fear" name="fear" min="0" max="100" value="0" />
+			<br />
+			<label for="confusion">Confusion</label>
+			<input
+				type="range"
+				id="confusion"
+				name="confusion"
+				min="0"
+				max="100"
+				value="0"
+			/>
+			<br />
+			<label for="boredom">Boredom</label>
+			<input
+				type="range"
+				id="boredom"
+				name="boredom"
+				min="0"
+				max="100"
+				value="0"
+			/>
+			<br />
+			<input type="submit" value="Submit" />
+		</form>
+
+		<script>
+			function likeImage(imageUrl) {
+				fetch("/like/" + encodeURIComponent(imageUrl))
+					.then((response) => response.text())
+					.then((likes) => {
+						document.querySelector("span").textContent = "Likes: " + likes;
+					});
+			}
+
+			// function handleFormSubmit(event) {
+			// 	event.preventDefault();
+			// 	console.log("Sending data to server...");
+
+			// 	const formData = new FormData(event.target);
+			// 	const data = Object.fromEntries(formData);
+
+			// 	// make post request to /savedata/ with data
+			// 	fetch("/save_data", {
+			// 		method: "POST",
+			// 		headers: {
+			// 			"Content-Type": "application/json",
+			// 		},
+			// 		body: JSON.stringify(data),
+			// 	})
+			// 		.then((response) => response.text())
+			// 		.then((response) => {
+			// 			console.log(response);
+			// 		});
+			// }
+		</script>
+	</body>
+</html>

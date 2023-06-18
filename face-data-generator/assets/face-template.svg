@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round" viewBox="0 0 100 100">
+  <path d="M${lex1} ${ley1} Q${lex2} ${ley2} ${lex3} ${ley3}" style="fill:none;fill-rule:nonzero;stroke:#000;stroke-width:10;stroke:blue"/>
+  <path d="M${rex1} ${rey1} Q${rex2} ${rey2} ${rex3} ${rey3}" style="fill:none;fill-rule:nonzero;stroke:#000;stroke-width:10;stroke:red"/>
+  <path d="M${mx1} ${my1} Q${mx2} ${my2} ${mx3} ${my3}" style="fill:none;stroke:#000;stroke-width:10;stroke-linejoin:round;stroke-miterlimit:1.5;stroke:black"/>
+</svg>
