@@ -21,23 +21,6 @@ export const SpeechPage = () => {
   const notes = useRef([]);
   const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
 
-  const sampleNote = {
-    transcriptText:
-      "tyler freya's web two my boy priya shou he's so good at web development",
-    timestamp: new Date(),
-    corrections: [
-      "The paragraph is too vague and lacks context to be fact-checked.",
-    ],
-    status: "correction",
-  };
-
-  const sampleNote2 = {
-    transcriptText: "FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK",
-    timestamp: new Date(),
-    corrections: ["FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK"],
-    status: "suggestion",
-  };
-
   const addNote = (note) => {
     notes.current.push(note);
     forceUpdate();
