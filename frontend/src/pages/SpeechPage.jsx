@@ -7,55 +7,56 @@ import face from "../assets/face.svg";
 import SpeechComponent from "../components/SpeechComponent";
 
 export const SpeechPage = () => {
-  const content =
-    "Pigs were not kept in every home and prayed to every evening and night in South America before European colonization. The cultural practices related to pigs varied among indigenous peoples.";
-  const timestamp = "12:35pm";
-  const [count, setCount] = useState(0);
-  const [loading, setLoading] = useState(true);
+	const content =
+		"Pigs were not kept in every home and prayed to every evening and night in South America before European colonization. The cultural practices related to pigs varied among indigenous peoples.";
+	const timestamp = "12:35pm";
+	const [count, setCount] = useState(0);
+	const [loading, setLoading] = useState(true);
 
-  const corrections = useRef([]);
-  const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
+	const corrections = useRef([]);
+	const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
 
-  const addCorrection = (correction) => {
-    corrections.current.push(correction);
-    forceUpdate();
-  };
+	const addCorrection = (correction) => {
+		corrections.current.push(correction);
+		forceUpdate();
+	};
 
-  useEffect(function () {
-    async function fetchData() {
-      const response = await factCheck("pigs are 1 inch tall");
-      console.log(response);
-    }
-    setLoading(false);
+	useEffect(function () {
+		async function fetchData() {
+			const response = await factCheck("pigs are 1 inch tall");
+			console.log(response);
+		}
+		setLoading(false);
 
-    fetchData();
-  }, []);
+		fetchData();
+	}, []);
 
-  if (loading) return <div>Loading...</div>;
+	if (loading) return <div>Loading...</div>;
 
-  return (
-    <div className="pageContainer">
-      <div className="leftSide">
-        <img src={face} className="face" />
-        <SpeechComponent addCorrection={addCorrection} />
-      </div>
-      <div className="boxesContainer">
-        {corrections.current.map((correction) => (
-          <PrettyBox
-            corrections={correction.corrections}
-            transcriptText={correction.transcriptText}
-            timestamp={correction.timestamp}
-            status="correction"
-          />
-        ))}
+	return (
+		<div className="pageContainer">
+			<div className="leftSide">
+				<img src={face} className="face" />
+				<SpeechComponent addCorrection={addCorrection} />
+			</div>
+			<div className="boxesContainer">
+				{corrections.current.map((correction, index) => (
+					<PrettyBox
+						key={index}
+						corrections={correction.corrections}
+						transcriptText={correction.transcriptText}
+						timestamp={correction.timestamp}
+						status="correction"
+					/>
+				))}
 
-        {/* <PrettyBox
+				{/* <PrettyBox
 					corrections={["correction1", "correction2", "correction3"]}
 					transcriptText={"transcriptText"}
 					timestamp={new Date()}
 					status="correction"
 				/> */}
-        {/* <PrettyBox
+				{/* <PrettyBox
 					content={content}
 					timestamp={timestamp}
 					status="correction"
@@ -65,9 +66,9 @@ export const SpeechPage = () => {
 					timestamp={timestamp}
 					status="correction"
 				/> */}
-      </div>
-    </div>
-  );
+			</div>
+		</div>
+	);
 };
 
 // export default SpeechPage;

@@ -13,9 +13,9 @@ import SpeechRecognition, {
 import { debounce } from "debounce";
 import factCheck from "../helpers/factCheck";
 
-// const appId = import.meta.env.VITE_SPEECHLY_APP_ID;
-// const SpeechlySpeechRecognition = createSpeechlySpeechRecognition(appId);
-// SpeechRecognition.applyPolyfill(SpeechlySpeechRecognition);
+const appId = import.meta.env.VITE_SPEECHLY_APP_ID;
+const SpeechlySpeechRecognition = createSpeechlySpeechRecognition(appId);
+SpeechRecognition.applyPolyfill(SpeechlySpeechRecognition);
 
 const SpeechComponent = ({ addCorrection }) => {
 	const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
@@ -27,7 +27,13 @@ const SpeechComponent = ({ addCorrection }) => {
 		browserSupportsSpeechRecognition,
 	} = useSpeechRecognition();
 
-	const transcript = useRef([]);
+	const transcript = useRef([
+		{
+			text: "",
+			timestamp: new Date(),
+			factual: "true",
+		},
+	]);
 	const transcriptLength = useRef(0);
 
 	useEffect(() => {
@@ -36,29 +42,67 @@ const SpeechComponent = ({ addCorrection }) => {
 	}, [textStream]);
 
 	function updateTranscript(newTextStream) {
-		let newBlock = newTextStream.substring(
+		if (newTextStream.length === 0) return;
+
+		// construct the new block object
+		let newBlockText = newTextStream.substring(
 			transcriptLength.current,
 			newTextStream.length
 		);
-		transcript.current.push(newBlock);
+		let blockObject = {
+			text: newBlockText,
+			timestamp: new Date(),
+			factual: "unknown",
+		};
 		transcriptLength.current = newTextStream.length;
 
+		if (blockObject.text.length > 5) {
+			transcript.current.push(blockObject);
+			fetchCorrection();
+		} else {
+			// append the new block to the last block
+			let lastBlock = transcript.current[transcript.current.length - 1];
+			lastBlock.text += blockObject.text;
+		}
+
 		async function fetchCorrection() {
-			const timestamp = new Date();
-			const response = await factCheck(newBlock);
+			// get the last three blocks that were factual
+
+			let lastThreeBlocks = [];
+			let lastThreeBlocksText = "";
+
+			for (let i = transcript.current.length - 1; i >= 0; i--) {
+				let currentBlock = transcript.current[i];
+				if (currentBlock.factual === "false") break;
+				else {
+					lastThreeBlocksText = currentBlock.text + lastThreeBlocksText;
+					lastThreeBlocks.push(currentBlock);
+					if (lastThreeBlocksText.length > 200) break;
+				}
+			}
+
+			// check if the last three blocks are factual
+			const response = await factCheck(blockObject.text);
 			console.log(response);
 			if (!response.factual) {
 				addCorrection({
-					transcriptText: newBlock,
-					timestamp: timestamp,
+					transcriptText: lastThreeBlocksText,
+					timestamp: blockObject.timestamp,
 					corrections: response.corrections,
 					status: "correction",
 				});
 			}
-		}
 
-		if (newBlock.length > 20) {
-			fetchCorrection();
+			// update the factual status of the block
+			if (response.factual) {
+				for (let i = 0; i < lastThreeBlocks.length; i++) {
+					lastThreeBlocks[i].factual = "true";
+				}
+			} else {
+				for (let i = 0; i < lastThreeBlocks.length; i++) {
+					lastThreeBlocks[i].factual = "false";
+				}
+			}
 		}
 
 		forceUpdate();
@@ -73,6 +117,7 @@ const SpeechComponent = ({ addCorrection }) => {
 	);
 
 	useEffect(() => {
+		if (textStream.length === 0) return;
 		if (textStream.length > transcriptLength.current + 250) {
 			updateTranscript(textStream);
 		}
@@ -88,18 +133,31 @@ const SpeechComponent = ({ addCorrection }) => {
 			<p>Microphone: {listening ? "on" : "off"}</p>
 			<button
 				onClick={() => {
-					SpeechRecognition.startListening({ continuous: true });
+					if (listening) {
+						SpeechRecognition.stopListening();
+					} else {
+						SpeechRecognition.startListening({ continuous: true });
+					}
 				}}
 			>
-				Start
+				{listening ? "Stop" : "Start"}
 			</button>
-			<button onClick={SpeechRecognition.stopListening}>Stop</button>
-			<button onClick={resetTextStream}>Reset</button>
+			{/* <button onClick={resetTextStream}>Reset</button> */}
 			{transcript.current.map((block, index) => {
-				return <p key={index}>{block}</p>;
+				if (block.text.length === 0) return;
+				return (
+					<p key={index}>
+						[{block.factual}]: {dateToHHMMSS(block.timestamp)}: {block.text}
+					</p>
+				);
 			})}
 		</div>
 	);
 };
+
+function dateToHHMMSS(date) {
+	if (!date) return "";
+	return date.toISOString().substr(11, 8);
+}
 
 export default SpeechComponent;

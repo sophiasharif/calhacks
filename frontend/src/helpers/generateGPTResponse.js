@@ -16,32 +16,32 @@ Make sure to inlude "await" before the function call since the API query happens
 */
 
 export default async function generateChatGPTResponse(
-  prompt,
-  tokens = 500,
-  temperature = 0.75
+	prompt,
+	tokens = 500,
+	temperature = 0.1
 ) {
-  const api_key = import.meta.env.VITE_OPENAI_KEY;
-  const client = axios.create({
-    headers: {
-      Authorization: "Bearer " + api_key,
-    },
-  });
+	const api_key = import.meta.env.VITE_OPENAI_KEY;
+	const client = axios.create({
+		headers: {
+			Authorization: "Bearer " + api_key,
+		},
+	});
 
-  const params = {
-    prompt: prompt,
-    model: "text-davinci-003",
-    max_tokens: tokens,
-    temperature: temperature,
-  };
+	const params = {
+		prompt: prompt,
+		model: "text-davinci-003",
+		max_tokens: tokens,
+		temperature: temperature,
+	};
 
-  try {
-    const result = await client.post(
-      "https://api.openai.com/v1/completions",
-      params
-    );
-    console.log("generated: ", result.data.choices[0].text);
-    return result.data.choices[0].text;
-  } catch (error) {
-    console.error(error);
-  }
+	try {
+		const result = await client.post(
+			"https://api.openai.com/v1/completions",
+			params
+		);
+		console.log("generated: ", result.data.choices[0].text);
+		return result.data.choices[0].text;
+	} catch (error) {
+		console.error(error);
+	}
 }

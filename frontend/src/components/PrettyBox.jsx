@@ -7,10 +7,10 @@ const PrettyBox = ({ corrections, transcriptText, timestamp, status }) => {
 			<div className={`sideBar ${status}`}>&nbsp;</div>
 			<div className="textContainer">
 				<div className="timestamp">{dateToHHMMSS(timestamp)}</div>
-				<div className = "transcript">You said: "{transcriptText}"</div>
+				<div className="transcript">You said: "{transcriptText}"</div>
 				<div className="boxContent">
-					{corrections?.map((correction) => (
-						<div className="correction">
+					{corrections?.map((correction, index) => (
+						<div className="correction" key={index}>
 							<div className="correctionText">{correction}</div>
 						</div>
 					))}
