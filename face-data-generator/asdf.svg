@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1001 1000" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;">
+    <g transform="matrix(1,0,0,1,-1147,0)">
+        <g transform="matrix(2.079,0,0,2.00803,1147.19,0)">
+            <rect id="Base-Face" serif:id="Base Face" x="0" y="0" width="481" height="498" style="fill:none;"/>
+            <g id="Base-Face1" serif:id="Base Face">
+                <g id="Left-Eye" serif:id="Left Eye" transform="matrix(0.934255,0,0,0.967275,15.8116,-15.2014)">
+                    <path d="M171.557,150.23L172.195,198.436" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:35.83px;"/>
+                </g>
+                <g id="RIght-Eye" serif:id="RIght Eye" transform="matrix(0.934255,0,0,0.967275,15.8116,-15.2014)">
+                    <path d="M309.443,150.23L310.085,198.436" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:35.83px;"/>
+                </g>
+                <g transform="matrix(0.422047,0,0,0.436964,-295.518,144.36)">
+                    <circle cx="1270.04" cy="394.875" r="20.859" style="fill:none;stroke:black;stroke-width:79.35px;stroke-linejoin:round;stroke-miterlimit:1.5;"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

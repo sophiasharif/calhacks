@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 481 498" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;">
+    <g id="Mouth" transform="matrix(0.976918,0,0,0.976918,5.55129,5.74749)">
+        <g transform="matrix(1.02363,-0,-0,1.02363,-5.68246,-5.88329)">
+            <path d="M128.063,306.943C121.657,296.304 107.82,292.867 97.181,299.272C86.542,305.677 83.105,319.515 89.511,330.154C95.916,340.792 109.753,344.229 120.392,337.824C131.031,331.419 134.468,317.581 128.063,306.943Z" style="fill:rgb(255,230,0);fill-rule:nonzero;"/>
+            <path d="M352.937,306.943C359.342,296.304 373.18,292.867 383.819,299.272C394.457,305.677 397.895,319.515 391.489,330.154C385.084,340.792 371.247,344.229 360.608,337.824C349.969,331.419 346.532,317.581 352.937,306.943Z" style="fill:rgb(255,230,0);fill-rule:nonzero;"/>
+            <path d="M115.75,330.114C136.409,357.268 175.706,392.519 240.5,392.519C305.294,392.519 344.591,357.268 365.25,330.114" style="fill:none;fill-rule:nonzero;stroke:rgb(255,230,0);stroke-width:30px;"/>
+        </g>
+    </g>
+    <g id="Left-Eye" serif:id="Left Eye" transform="matrix(0.976918,0,0,0.976918,5.55129,5.74749)">
+        <path d="M171.557,150.23L172.195,198.436" style="fill:none;fill-rule:nonzero;stroke:rgb(255,230,0);stroke-width:35.83px;"/>
+    </g>
+    <g id="RIght-Eye" serif:id="RIght Eye" transform="matrix(0.976918,0,0,0.976918,5.55129,5.74749)">
+        <path d="M309.443,150.23L310.085,198.436" style="fill:none;fill-rule:nonzero;stroke:rgb(255,230,0);stroke-width:35.83px;"/>
+    </g>
+    <g id="Outer-Face" serif:id="Outer Face" transform="matrix(0.976918,0,0,0.976918,5.55129,5.74749)">
+        <path d="M468.5,249C468.5,380.028 366.015,485.5 240.5,485.5C114.985,485.5 12.5,380.028 12.5,249C12.5,117.972 114.985,12.5 240.5,12.5C366.015,12.5 468.5,117.972 468.5,249Z" style="fill:none;fill-rule:nonzero;stroke:rgb(255,230,0);stroke-width:30.71px;stroke-linecap:butt;"/>
+    </g>
+</svg>

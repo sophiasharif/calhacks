@@ -1,10 +1,9 @@
 import { useEffect, useReducer, useRef, useState } from "react";
 import PrettyBox from "../components/PrettyBox";
-import factCheck from "../helpers/factCheck";
-import suggestion from "../helpers/suggestion";
 import "./SpeechPage.scss";
 import face from "../assets/face.svg";
 import SpeechComponent from "../components/SpeechComponent";
+import { factCheck } from "../helpers/GPTEndpoints";
 
 export const SpeechPage = () => {
 	const content =

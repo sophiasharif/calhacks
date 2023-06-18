@@ -11,7 +11,7 @@ import SpeechRecognition, {
 	useSpeechRecognition,
 } from "react-speech-recognition";
 import { debounce } from "debounce";
-import factCheck from "../helpers/factCheck";
+import { factCheck } from "../helpers/GPTEndpoints";
 
 const appId = import.meta.env.VITE_SPEECHLY_APP_ID;
 const SpeechlySpeechRecognition = createSpeechlySpeechRecognition(appId);
