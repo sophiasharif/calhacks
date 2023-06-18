@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round" viewBox="0 0 100 100">
+  <path d="M32 19 Q27 29 29 32" style="fill:none;fill-rule:nonzero;stroke:#000;stroke-width:10;stroke:blue"/>
+  <path d="M70 22 Q69 30 71 32" style="fill:none;fill-rule:nonzero;stroke:#000;stroke-width:10;stroke:red"/>
+  <path d="M22 58 Q48 77 70 62" style="fill:none;stroke:#000;stroke-width:10;stroke-linejoin:round;stroke-miterlimit:1.5;stroke:black"/>
+</svg>

@@ -43,8 +43,6 @@ export const SpeechPage = () => {
     forceUpdate();
   };
 
-  console.log(JSON.stringify(notes.current));
-
   useEffect(function () {
     async function fetchData() {
       const response = await factCheck("pigs are 1 inch tall");
