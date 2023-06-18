@@ -3,6 +3,9 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader, Dataset
 
+import random
+import constants
+
 # load model from trained_model.pth
 model = torch.load('trained_model.pth')
 
@@ -11,7 +14,7 @@ class Model(nn.Module):
     def __init__(self):
         super(Model, self).__init__()
         # Adjust input and output dimensions accordingly
-        self.fc1 = nn.Linear(2, 32)
+        self.fc1 = nn.Linear(constants.PARAM_COUNT, 32)
         self.fc2 = nn.Linear(32, 32)
         self.fc4 = nn.Linear(32, 18)
 
@@ -47,7 +50,9 @@ class Model(nn.Module):
 
 
 def genModelOutput(input_data):
-    input_data = input_data[:2]
+    random_number_for_temperature = random.randint(0, 100)
+    input_data[2] = random_number_for_temperature
+    input_data = input_data[:constants.PARAM_COUNT]
     # normalize data
     input_data = [x/100 for x in input_data]
     # convert input_data to tensor

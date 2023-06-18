@@ -2,6 +2,8 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader, Dataset
 
+import constants
+
 # impot os
 import os
 
@@ -15,7 +17,7 @@ class CustomDataset(Dataset):
             for line in file:
                 line = line.strip().split()
                 input_data = list(map(float, line[:8]))
-                input_data = input_data[:2]
+                input_data = input_data[:constants.PARAM_COUNT]
                 output_data = list(map(float, line[8:]))
                 # normalize data
                 input_data = [x/100 for x in input_data]
@@ -40,7 +42,7 @@ class Model(nn.Module):
     def __init__(self):
         super(Model, self).__init__()
         # Adjust input and output dimensions accordingly
-        self.fc1 = nn.Linear(2, 32)
+        self.fc1 = nn.Linear(constants.PARAM_COUNT, 32)
         self.fc2 = nn.Linear(32, 32)
         self.fc4 = nn.Linear(32, 18)
 
@@ -61,13 +63,17 @@ data_path_objects = [
     #     'path': './data/dataset-jiggled.txt',
     #     'num_epochs': 10,
     # },
+    # {
+    #     'path': './data/sad-face-data.txt',
+    #     'num_epochs': 3,
+    # },
+    # {
+    #     'path': './data/happy-face-data.txt',
+    #     'num_epochs': 5,
+    # },
     {
-        'path': './data/happy-face-data.txt',
+        'path': './data/all-face-data.txt',
         'num_epochs': 5,
-    },
-    {
-        'path': './data/sad-face-data.txt',
-        'num_epochs': 3,
     },
 ]
 
