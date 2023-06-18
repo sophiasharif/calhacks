@@ -5,6 +5,6 @@ const suggestionPrompt =
 	"Do not respond with anything except for a JSON object, which has a field containsQuestion. If the text below contains a question, do the following three things: 1) set containsQuestion to true. 2) add a field called question with the question in the text in proper english. 3) add a field called answer, with the answer to the question. Here is the text you should analyze: ";
 
 const summarizePrompt =
-	"Summarize the lesson plan provided below. The intent is for the summary to be provided as context before a question relating to the lesson is asked.  Do not respond with anything except for a 1-2 sentence summary.";
+	"Do not respond with anything except for a JSON object. The JSON object should contain a field called summary. Summarize the lesson plan provided below in 1 to 2 sentences. The intent is for the summary to be provided as context before a question relating to the lesson is asked.";
 
 export { factCheckPrompt, suggestionPrompt, summarizePrompt };
