@@ -39,6 +39,14 @@ const SpeechComponent = ({ addNote }) => {
 	]);
 	const transcriptLength = useRef(0);
 
+	let transcriptText;
+	if (transcriptLength.current === 0){
+		transcriptText = "Start Recording to See Live Transcript";
+	}
+	else{
+		transcriptText = "Live Transcript";
+	}
+
 	useEffect(() => {
 		console.log("textStream changed");
 		console.log(textStream);
@@ -147,7 +155,7 @@ const SpeechComponent = ({ addNote }) => {
 
 	return (
 		<div className="speech-component">
-			<div className = "transcriptTitle">Live Transcript</div>
+			<div className = "transcriptTitle">{transcriptText}</div>
 			<div className = "transcriptContainer">
 				{transcript.current.map((block, index) => {
 					if (block.text.length === 0) return;

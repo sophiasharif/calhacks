@@ -12,6 +12,12 @@
 		font-weight: 700;
 		font-family: 'Lato';
 		margin-bottom: 1rem;
+		align-items: center;
+		justify-content: center;
+
+		@media only screen and (max-width: 1179px){
+			text-align: center;
+		}
 	}
 
 	.buttonRow{
@@ -55,12 +61,20 @@
 			color: #464646;
 			padding: 0 1rem 0 1rem;
 		}
+
+		@media only screen and (max-width: 1179px){
+			width: 100%;
+			align-items: center;
+			justify-content: center;
+			gap: 2rem;
+		}
 	}
 
 	.transcriptContainer{
-		max-height: 385px;
+		max-height: 326px;
+		margin-bottom: 10px;
 		overflow-y: auto;
-		width: 80%;
+		width: 90%;
 		min-height: 30vh;
 	}
 
