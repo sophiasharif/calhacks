@@ -84,11 +84,12 @@ const SpeechComponent = ({ addCorrection }) => {
 			// check if the last three blocks are factual
 			const response = await factCheck(blockObject.text);
 			console.log(response);
-			if (!response.factual) {
+			if (!response.factual && !response.unclear) {
 				addCorrection({
 					transcriptText: lastFewBlocksText,
 					timestamp: blockObject.timestamp,
 					corrections: response.corrections,
+					unclear: response.unclear,
 					status: "correction",
 				});
 			}

@@ -1,7 +1,9 @@
 import React from "react";
 import "./PrettyBox.scss";
 
-const PrettyBox = ({ corrections, transcriptText, timestamp, status }) => {
+const PrettyBox = ({
+	correction: { corrections, transcriptText, timestamp, status },
+}) => {
 	return (
 		<div className="boxContainer">
 			<div className={`sideBar ${status}`}>&nbsp;</div>

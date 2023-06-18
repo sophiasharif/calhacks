@@ -43,13 +43,7 @@ export const SpeechPage = () => {
 			</div>
 			<div className="boxesContainer">
 				{corrections.current.map((correction, index) => (
-					<PrettyBox
-						key={index}
-						corrections={correction.corrections}
-						transcriptText={correction.transcriptText}
-						timestamp={correction.timestamp}
-						status="correction"
-					/>
+					<PrettyBox key={index} correction={correction} status="correction" />
 				))}
 
 				{/* <PrettyBox
