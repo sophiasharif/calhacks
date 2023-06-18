@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
 import PrettyBox from "../components/PrettyBox";
 import factCheck from "../helpers/factCheck";
 import suggestion from "../helpers/suggestion";
 import "./SpeechPage.scss";
 import face from "../assets/face.svg";
+import SpeechComponent from "../components/SpeechComponent";
 
 export const SpeechPage = () => {
   const content =
@@ -12,11 +13,17 @@ export const SpeechPage = () => {
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
 
+  const corrections = useRef([]);
+  const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
+
+  const addCorrection = (correction) => {
+    corrections.current.push(correction);
+    forceUpdate();
+  };
+
   useEffect(function () {
     async function fetchData() {
-      const response = await suggestion(
-        "pigs are 1 inch tall. i love minecraft. obama used to be the president. when was obama the president?"
-      );
+      const response = await factCheck("pigs are 1 inch tall");
       console.log(response);
     }
     setLoading(false);
@@ -28,23 +35,36 @@ export const SpeechPage = () => {
 
   return (
     <div className="pageContainer">
-      <img src={face} className="face" />
+      <div className="leftSide">
+        <img src={face} className="face" />
+        <SpeechComponent addCorrection={addCorrection} />
+      </div>
       <div className="boxesContainer">
-        <PrettyBox
-          content={content}
-          timestamp={timestamp}
-          status="suggestion"
-        />
-        <PrettyBox
-          content={content}
-          timestamp={timestamp}
-          status="correction"
-        />
-        <PrettyBox
-          content={content + content}
-          timestamp={timestamp}
-          status="correction"
-        />
+        {corrections.current.map((correction) => (
+          <PrettyBox
+            corrections={correction.corrections}
+            transcriptText={correction.transcriptText}
+            timestamp={correction.timestamp}
+            status="correction"
+          />
+        ))}
+
+        {/* <PrettyBox
+					corrections={["correction1", "correction2", "correction3"]}
+					transcriptText={"transcriptText"}
+					timestamp={new Date()}
+					status="correction"
+				/> */}
+        {/* <PrettyBox
+					content={content}
+					timestamp={timestamp}
+					status="correction"
+				/>
+				<PrettyBox
+					content={content + content}
+					timestamp={timestamp}
+					status="correction"
+				/> */}
       </div>
     </div>
   );

@@ -15,9 +15,17 @@ html {
 		justify-content: center;
 	}
 
-	> .face {
+	> .leftSide {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.face {
 		width: 610px;
-		margin-right: 8.25rem;
+		// margin-right: 8.25rem;
 
 		@media only screen and (max-width: 1375px) {
 			margin-right: 0px;
@@ -25,6 +33,7 @@ html {
 	}
 
 	> .boxesContainer {
+		flex: 1;
 		display: flex;
 		flex-direction: column;
 		gap: 2rem;

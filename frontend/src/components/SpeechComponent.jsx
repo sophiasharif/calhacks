@@ -11,12 +11,13 @@ import SpeechRecognition, {
 	useSpeechRecognition,
 } from "react-speech-recognition";
 import { debounce } from "debounce";
+import factCheck from "../helpers/factCheck";
 
 // const appId = import.meta.env.VITE_SPEECHLY_APP_ID;
 // const SpeechlySpeechRecognition = createSpeechlySpeechRecognition(appId);
 // SpeechRecognition.applyPolyfill(SpeechlySpeechRecognition);
 
-const SpeechComponent = () => {
+const SpeechComponent = ({ addCorrection }) => {
 	const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
 
 	const {
@@ -42,6 +43,24 @@ const SpeechComponent = () => {
 		transcript.current.push(newBlock);
 		transcriptLength.current = newTextStream.length;
 
+		async function fetchCorrection() {
+			const timestamp = new Date();
+			const response = await factCheck(newBlock);
+			console.log(response);
+			if (!response.factual) {
+				addCorrection({
+					transcriptText: newBlock,
+					timestamp: timestamp,
+					corrections: response.corrections,
+					status: "correction",
+				});
+			}
+		}
+
+		if (newBlock.length > 20) {
+			fetchCorrection();
+		}
+
 		forceUpdate();
 		console.log(transcript.current);
 	}
@@ -65,7 +84,7 @@ const SpeechComponent = () => {
 	}
 
 	return (
-		<div>
+		<div className="speech-component">
 			<p>Microphone: {listening ? "on" : "off"}</p>
 			<button
 				onClick={() => {
@@ -76,14 +95,11 @@ const SpeechComponent = () => {
 			</button>
 			<button onClick={SpeechRecognition.stopListening}>Stop</button>
 			<button onClick={resetTextStream}>Reset</button>
-			{/* <p>{textStream}</p> */}
 			{transcript.current.map((block, index) => {
 				return <p key={index}>{block}</p>;
 			})}
 		</div>
 	);
-
-	return <div>SpeechRecognition</div>;
 };
 
 export default SpeechComponent;
