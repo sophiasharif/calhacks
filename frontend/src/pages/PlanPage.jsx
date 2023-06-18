@@ -1,7 +1,9 @@
 import { React, useState, useEffect } from "react";
 import "./PlanPage.scss";
 import { useForm } from "react-hook-form";
-import { summarizeLessonPlan } from "../helpers/GPTEndpoints";
+import { LESSON_CONTEXT, summarizeLessonPlan } from "../helpers/GPTEndpoints";
+
+import { useNavigate } from "react-router-dom";
 
 export const PlanPage = () => {
 	const {
@@ -10,6 +12,9 @@ export const PlanPage = () => {
 		watch,
 		formState: { errors },
 	} = useForm();
+
+	const navigate = useNavigate();
+
 	const onSubmit = async (data) => {
 		console.log(data);
 
@@ -24,8 +29,18 @@ export const PlanPage = () => {
 		const audienceSentence = `Speech intended audience: ${data.audience}.`;
 		const summaryText = `The context for the speech: ${lessonSummary}.`;
 
-		console.log(audienceSentence);
-		console.log(summaryText);
+		let contextText = "";
+
+		if (data.audience) {
+			contextText += audienceSentence + "\n";
+		}
+
+		if (lessonSummary) {
+			contextText += summaryText + "\n";
+		}
+
+		LESSON_CONTEXT.text = contextText;
+		navigate("/live");
 	};
 
 	return (
@@ -78,7 +93,7 @@ export const PlanPage = () => {
 									id="input3"
 									{...register("enableRecap")}
 								/>
-								<label for="input3" className="label3">
+								<label htmlFor="input3" className="label3">
 									End of Lecture Feedback
 								</label>
 							</div>
