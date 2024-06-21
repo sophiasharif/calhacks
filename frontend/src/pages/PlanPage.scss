@@ -1,184 +1,198 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
 
-*{
-    overflow-y: auto;
+* {
+	overflow-y: auto;
 }
 
-.mainContainer{
-    font-family: 'Lato';
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    color: #464646;
+.mainContainer {
+	font-family: "Lato";
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	color: #464646;
 
-    @media only screen and (max-width: 1425px){
-        flex-direction: column;
-    }
+	@media only screen and (max-width: 1425px) {
+		flex-direction: column;
+	}
 
-    .leftContainer{
-        padding: 2.5rem 0 0 3rem;
-        justify-content: center;
-        display: flex;
-        flex-direction: column;
+	.leftContainer {
+		padding: 2.5rem 0 0 3rem;
+		justify-content: center;
+		display: flex;
+		flex-direction: column;
 
-        .startForm{
+		.startForm {
+			.formContainer {
+				display: flex;
+				flex-direction: column;
 
-            .formContainer{
-                display: flex;
-                flex-direction: column; 
-                
-                @media only screen and (max-width: 1425px){
-                    align-items: center;
-                }
-            }
-            
-            @media only screen and (max-width: 1425px){
-                justify-content: center;
-            }
+				@media only screen and (max-width: 1425px) {
+					align-items: center;
+				}
+			}
 
-            .bigTitle{
-                font-size: 4rem;
-                font-weight: 700;
-                margin-bottom: 1.5rem;
-            }
+			@media only screen and (max-width: 1425px) {
+				justify-content: center;
+			}
 
-            .subTitle{
-                font-size: 1.5rem;
-                font-weight: 700;
-                margin-bottom: 1.5rem;
-            }
+			.bigTitle {
+				font-size: 4rem;
+				font-weight: 700;
+				margin-bottom: 1.5rem;
+			}
 
-            .audienceField{
-                height: 5.5rem;
-                width: 665px;
-                background: linear-gradient(180deg, rgba(84, 255, 247, 0) 0%, rgba(123, 255, 249, 0.23) 63.02%);
-                border: 2px solid #1CF3FF;
-                border-radius: 25px;
-                font-family: 'Lato';
-                font-weight: 700;
-                font-size: 1.5rem;
-                padding-left: 1.5rem;
+			.subTitle {
+				font-size: 1.5rem;
+				font-weight: 700;
+				margin-bottom: 1.5rem;
+			}
 
-                &:focus{
-                    outline: none;
-                }
+			.audienceField {
+				height: 5.5rem;
+				width: 665px;
+				background: linear-gradient(
+					180deg,
+					rgba(84, 255, 247, 0) 0%,
+					rgba(123, 255, 249, 0.23) 63.02%
+				);
+				border: 2px solid #1cf3ff;
+				border-radius: 25px;
+				font-family: "Lato";
+				font-weight: 700;
+				font-size: 1.5rem;
+				padding-left: 1.5rem;
 
-                &::placeholder{
-                    color: #A4A4A4;
-                }
+				&:focus {
+					outline: none;
+				}
 
-                margin-bottom: 5.0625rem;
-            }
+				&::placeholder {
+					color: #a4a4a4;
+				}
 
-            .checkboxContainer{
-                height: 15rem;
-                width: 665px;
-                background: linear-gradient(180deg, rgba(255, 255, 255, 0.23) 14.58%, rgba(6, 255, 244, 0.23) 100%);
-                border-radius: 2.5rem;
-                border: 2px solid #1CF3FF;
-                padding: 1.5rem 0 0 1.5rem;
+				margin-bottom: 5.0625rem;
+			}
 
-                @mixin checkLabel{
-                    transform: scale(1.5);
-                    font-family: 'Lato';
-                    font-weight: 400;
-                    font-size: 1rem;
-                    margin-left: 2.25rem;
-                }
+			.checkboxContainer {
+				height: 15rem;
+				width: 665px;
+				background: linear-gradient(
+					180deg,
+					rgba(255, 255, 255, 0.23) 14.58%,
+					rgba(6, 255, 244, 0.23) 100%
+				);
+				border-radius: 2.5rem;
+				border: 2px solid #1cf3ff;
+				padding: 1.5rem 0 0 1.5rem;
 
-                .checkbox{
-                    display: inline-block;
-                }
+				@mixin checkLabel {
+					transform: scale(1.5);
+					font-family: "Lato";
+					font-weight: 400;
+					font-size: 1rem;
+					margin-left: 2.25rem;
+				}
 
-                .label1{
-                    @include checkLabel;
-                }
+				.checkbox {
+					display: inline-block;
+				}
 
-                .label2{
-                    @include checkLabel;
-                }
+				.label1 {
+					@include checkLabel;
+				}
 
-                .label3{
-                    @include checkLabel;
-                }
-                
-                //Why the fuck was this so difficult to figure out what the fuck
-                input[type="checkbox"]{
-                    -moz-appearance:none;
-                    -webkit-appearance:none;
-                    -o-appearance:none;
-                    width: 2.5rem;
-                    height: 2.5rem;
-                    border: 3px solid #1CF3FF;
-                    background: #FFFEFE;
-                    text-align: middle;
-                    margin-right: 2rem;
-                }
+				.label2 {
+					@include checkLabel;
+				}
 
-                input[type="checkbox"]:checked{
-                    background: #1CF3FF;
-                }
+				.label3 {
+					@include checkLabel;
+				}
 
-                .checkboxRow {
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    margin-bottom: 1.5rem;
-                }
-            }
+				input[type="checkbox"] {
+					-moz-appearance: none;
+					-webkit-appearance: none;
+					-o-appearance: none;
+					width: 2.5rem;
+					height: 2.5rem;
+					border: 3px solid #1cf3ff;
+					background: #fffefe;
+					text-align: middle;
+					margin-right: 2rem;
+				}
 
-            .buttonContainer{
-                display: flex;
-                justify-content: center;
-                .start{
-                    height: 4rem;
-                    width: 12.375rem;
-                    background: linear-gradient(180deg, rgba(255, 255, 255, 0.23) 0%, rgba(6, 255, 244, 0.23) 100%);
-                    border: 2px solid #1CF3FF;
-                    border-radius: 1.25rem;
-                    margin: 4rem 0 0 0;
-                    font-family: 'Lato';
-                    font-size: 1.25rem;
-                    font-weight: 700;
-    
-                    &:hover{
-                        cursor: pointer;
-                    }
-                }
-            }
-        }
-    }
-    .rightContainer{
-        margin-left: 3rem;
-        padding-right: 2.5rem;
-        display: flex;
-        flex-direction: column;
-        
-        @media only screen and (max-width: 1425px){
-            justify-content: center;
-            align-items: center;
-        }
+				input[type="checkbox"]:checked {
+					background: #1cf3ff;
+				}
 
-        .mediumTitle{
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-top: 7.5rem;
-            margin-bottom: 1rem;
-        }
+				.checkboxRow {
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					margin-bottom: 1.5rem;
+				}
+			}
 
-        .lessonPlanBox{
-            width: 39.5rem;
-            height: 41.0625rem;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.23) 0%, rgba(6, 255, 244, 0.23) 100%);
-            border: 2px solid #1CF3FF;
-            border-radius: 40px;
-            padding: 2.5rem 0 0 1.5rem;
-            font-family: 'Lato';
-            font-size: 1.5rem;
+			.buttonContainer {
+				display: flex;
+				justify-content: center;
+				.start {
+					height: 4rem;
+					width: 12.375rem;
+					background: linear-gradient(
+						180deg,
+						rgba(255, 255, 255, 0.23) 0%,
+						rgba(6, 255, 244, 0.23) 100%
+					);
+					border: 2px solid #1cf3ff;
+					border-radius: 1.25rem;
+					margin: 4rem 0 0 0;
+					font-family: "Lato";
+					font-size: 1.25rem;
+					font-weight: 700;
 
-            &::placeholder{
-                color: #A4A4A4;
-            }
-        }
-    }
+					&:hover {
+						cursor: pointer;
+					}
+				}
+			}
+		}
+	}
+	.rightContainer {
+		margin-left: 3rem;
+		padding-right: 2.5rem;
+		display: flex;
+		flex-direction: column;
+
+		@media only screen and (max-width: 1425px) {
+			justify-content: center;
+			align-items: center;
+		}
+
+		.mediumTitle {
+			font-size: 2.5rem;
+			font-weight: 700;
+			margin-top: 7.5rem;
+			margin-bottom: 1rem;
+		}
+
+		.lessonPlanBox {
+			width: 39.5rem;
+			height: 41.0625rem;
+			background: linear-gradient(
+				180deg,
+				rgba(255, 255, 255, 0.23) 0%,
+				rgba(6, 255, 244, 0.23) 100%
+			);
+			border: 2px solid #1cf3ff;
+			border-radius: 40px;
+			padding: 2.5rem 0 0 1.5rem;
+			font-family: "Lato";
+			font-size: 1.5rem;
+
+			&::placeholder {
+				color: #a4a4a4;
+			}
+		}
+	}
 }

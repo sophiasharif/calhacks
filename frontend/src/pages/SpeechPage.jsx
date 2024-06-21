@@ -19,22 +19,12 @@ export const SpeechPage = () => {
 
 	const sampleNote = {
 		transcriptText:
-		  "tyler freya's web two my boy priya shou he's so good at web development",
+			"tyler freya's web two my boy priya shou he's so good at web development",
 		timestamp: new Date(),
 		corrections: [
-		  "The paragraph is too vague and lacks context to be fact-checked."
+			"The paragraph is too vague and lacks context to be fact-checked.",
 		],
-		status: "correction"
-	};
-
-	const sampleNote2 = {
-		transcriptText:
-		  "FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK",
-		timestamp: new Date(),
-		corrections: [
-		  "FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK"
-		],
-		status: "suggestion"
+		status: "correction",
 	};
 
 	const addNote = (note) => {
@@ -44,7 +34,7 @@ export const SpeechPage = () => {
 
 	const setNotes = () => {
 		corrections = notes;
-	}
+	};
 
 	console.log(JSON.stringify(notes.current));
 
@@ -53,22 +43,18 @@ export const SpeechPage = () => {
 			const response = await factCheck("pigs are 1 inch tall");
 			console.log(response);
 			const response1 = await getSentiment("I hate you");
-			
-			if(response1 !== "undefined")
-			{
-				console.log(response1)
-				console.log("coming here")
+
+			if (response1 !== "undefined") {
+				console.log(response1);
+				console.log("coming here");
 				const responseObj = JSON.parse(response1);
 				const jobId = responseObj.job_id;
 				console.log(jobId);
 				const response2 = await getSentimentPrediction(response1);
 				console.log(response2);
-
+			} else {
+				console.log("undefined");
 			}
-			else{
-				console.log("undefined")
-			}
-			
 		}
 		setLoading(false);
 
@@ -86,9 +72,8 @@ export const SpeechPage = () => {
 			<div className="boxesContainer">
 				{notes.current.reverse().map((note, index) => {
 					if (index <= 2)
-					return (<PrettyBox index={index} note={note} status="correction" />);
-				}
-				)}
+						return <PrettyBox index={index} note={note} status="correction" />;
+				})}
 				{/* <PrettyBox
 					note = {sampleNote}
 				/>
